@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transcripción de conversaciones — Anáhuac Online</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="masthead">
+    <p class="masthead__kicker">Anáhuac Online</p>
+    <h1 class="masthead__title">Transcripción de conversaciones</h1>
+    <p class="masthead__lede">
+      Pega los links que tus alumnos compartieron de su conversación con el
+      agente de IA. Extraemos cada turno, guardamos el registro completo y
+      te entregamos un documento de Word por alumno, listo para revisar.
+    </p>
+  </header>
+
+  <form id="form-actividad" novalidate>
+
+    <section class="block">
+      <h2 class="block__title">Datos de la actividad</h2>
+
+      <div class="field-grid">
+        <label class="field">
+          <span class="field__label">Curso</span>
+          <input type="text" name="curso" required placeholder="Diseño y desarrollo de productos">
+        </label>
+
+        <label class="field">
+          <span class="field__label">Clave de materia</span>
+          <input type="text" name="clave_materia" required placeholder="ING3702">
+        </label>
+
+        <label class="field">
+          <span class="field__label">Programa</span>
+          <input type="text" name="programa" required placeholder="Ingeniería Industrial">
+        </label>
+
+        <label class="field">
+          <span class="field__label">Arranque / sección</span>
+          <input type="text" name="arranque" required placeholder="20081 (A43)">
+        </label>
+
+        <label class="field">
+          <span class="field__label">Número de actividad</span>
+          <input type="text" name="actividad_numero" required placeholder="Actividad 2">
+        </label>
+
+        <label class="field">
+          <span class="field__label">Fecha límite</span>
+          <input type="text" name="fecha_limite" required placeholder="26 de abril de 2026">
+        </label>
+
+        <label class="field field--wide">
+          <span class="field__label">Nombre de la actividad</span>
+          <input type="text" name="actividad_nombre" required placeholder="De la detección de necesidades al diseño del sistema de producto">
+        </label>
+
+        <label class="field field--wide">
+          <span class="field__label">Carpeta de Drive (ID)</span>
+          <input type="text" name="carpeta_drive_id" required placeholder="1LtZ0T148S5JIeJpLxVse-D4NfchtSEQk">
+          <span class="field__hint">Es la parte del link de la carpeta después de <code>/folders/</code>. Ahí se guardará el Sheet de esta actividad y los archivos originales.</span>
+        </label>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block__header-row">
+        <h2 class="block__title">Alumnos</h2>
+        <button type="button" id="btn-agregar-alumno" class="btn btn--ghost">Agregar alumno</button>
+      </div>
+
+      <div id="tabla-alumnos" class="roster">
+        <div class="roster__head">
+          <span>Nombre</span>
+          <span>Link de la conversación</span>
+          <span>Fecha de envío</span>
+          <span aria-hidden="true"></span>
+        </div>
+        <div id="filas-alumnos"></div>
+      </div>
+    </section>
+
+    <div class="submit-row">
+      <button type="submit" id="btn-generar" class="btn btn--primary">Generar transcripts</button>
+      <p id="mensaje-error" class="mensaje-error" hidden></p>
+    </div>
+
+  </form>
+
+  <section id="pantalla-espera" class="espera" hidden>
+    <div class="espera__marca" aria-hidden="true"></div>
+    <h2 class="espera__titulo">Procesando conversaciones…</h2>
+    <p class="espera__texto">
+      Estamos visitando cada link y extrayendo la conversación turno por
+      turno. Con un grupo completo esto puede tardar varios minutos —
+      preferimos hacerlo con cuidado a que se pierda algo.
+    </p>
+    <p class="espera__contador" id="espera-contador"></p>
+  </section>
+
+</div>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
